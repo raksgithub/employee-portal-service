@@ -1,0 +1,21 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const EmployeeSchema = new Schema({
+    name: String,
+    type: String,
+    assetNo: Number,
+    designation: String,
+    department: String,
+    currentProjectId: String,
+    cubicalNo: String,
+    previousProjectIds: { type: [String], index: true },
+    experience: {
+        joiningDate: { type: Date, default: Date.now },
+        skillSet: { type: [String], index: true },
+        totalExperience: String
+    },
+    employeesComeUnder: { type: [String], index: true }
+});
+
+module.exports = mongoose.model('Employee', EmployeeSchema);
