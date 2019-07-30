@@ -24,7 +24,7 @@ const getUserId = async token => {
     // Verify token and return id of the user from payload of jwt.
     const user = await jwt.verify(token, publicKey, verifyOptions);
     // Return the mongoId for the user
-    return user._id;
+    return user.userId;
 }
 
 const decodeToken = async token => {

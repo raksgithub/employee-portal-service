@@ -9,7 +9,10 @@ const fetchUserById = () => ({
             type: GraphQLID
         }
     },
-    async resolve(parent, args, context) {
+    async resolve(_, args, context) {
+        if(!context.userId) {
+            throw new Error('Token is not provided. Please provide authoriztion token.');
+        }
         const user = await User.findById(args.id);
         return user;
     }
@@ -17,7 +20,10 @@ const fetchUserById = () => ({
 
 const fetchUsers = () => ({
     type: new GraphQLList(UserType),
-    async resolve(parent, __, ___) {
+    async resolve(_, __, context) {
+        if(!context.userId) {
+            throw new Error('Token is not provided. Please provide authoriztion token.');
+        }
         const users = await User.find();
         return users;
     }

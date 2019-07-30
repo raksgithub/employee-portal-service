@@ -35,7 +35,7 @@ const signInUser = () => ({
     },
     async resolve(_, args) {
         // 1. Extract user information based on username
-        const user = await User.find({ username: args.username });
+        const user = await User.findOne({ username: args.username });
         // 2. check if the user is what you are looking for
         if(!user) {
             throw new Error('User does not exist');

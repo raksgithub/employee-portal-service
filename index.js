@@ -9,20 +9,20 @@ const app = express();
 
 // Token checking middleware 
 const checkToken = async (req, res, next) => {
-    const token = req.headers['Authorization'];
-    console.log('Token:', token);
-    if (!token) {
-        req.userId = 123;
-    } else {
+    try {
+        const token = req.headers['authorization'];
         const userId = await getUserId(token);
         req.userId = userId;
+        next();
     }
-    next();
+    catch(err) {
+        next();
+    }
 }
 
 app.use('/graphql', checkToken, graphqlHTTP(req => ({
     schema,
-    graphiql: true,
+    graphiql: process.env.NODE_ENV === 'development',
     context: { userId: req.userId }
 })));
 
