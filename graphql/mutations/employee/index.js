@@ -7,9 +7,9 @@ const createEmployee = () => ({
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         designation: { type: new GraphQLNonNull(GraphQLString) },
-        department: { type: new GraphQLNonNull(GraphQLString) },
+        department: { type: new GraphQLNonNull(GraphQLID) },
         currentProject: { type: new GraphQLNonNull(GraphQLID) },
-        previousProjects: { type: new GraphQLNonNull(new GraphQLList(GraphQLID)) },
+        previousProjects: { type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(GraphQLID))) },
         experience: { type: new GraphQLNonNull(ExperienceInputType) }
     },
     async resolve(_, args) {
@@ -59,4 +59,16 @@ const assignCubicalToEmployee = () => ({
     }
 });
 
-module.exports = { createEmployee, addRelationshipToEmployees, assignCubicalToEmployee };
+const assignEmployeeToDepartment = () => ({
+    type: EmployeeType,
+    args: {
+        employeeId: { type: new GraphQLNonNull(GraphQLID) },
+        departmentId: { type: new GraphQLNonNull(GraphQLID) }
+    },
+    resolve: async (_, args) => {
+        const updatedEmployee = await Employee.findByIdAndUpdate(args.employeeId, { department: args.departmentId }, { new: true });
+        return updatedEmployee;
+    }
+});
+
+module.exports = { createEmployee, addRelationshipToEmployees, assignCubicalToEmployee, assignEmployeeToDepartment };

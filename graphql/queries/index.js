@@ -5,6 +5,7 @@ const { fetchProjectById, fetchProjects } = require('./project');
 const { fetchAssetById, fetchAssets } = require('./asset');
 const { fetchCubicalById, fetchCubicals } = require('./cubical');
 const { fetchRoomById, fetchRooms } = require('./room');
+const { fetchDepartmentById, fetchDepartments } = require('./department');
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQuery',
@@ -20,7 +21,9 @@ const RootQuery = new GraphQLObjectType({
         cubical: fetchCubicalById(),
         cubicals: fetchCubicals(),
         room: fetchRoomById(),
-        rooms: fetchRooms()
+        rooms: fetchRooms(),
+        department: fetchDepartmentById(),
+        departments: fetchDepartments()
     }
 });
 

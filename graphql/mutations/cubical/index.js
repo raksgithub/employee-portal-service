@@ -1,11 +1,11 @@
-const { GraphQLID } = require('graphql');
+const { GraphQLID, GraphQLNonNull } = require('graphql');
 const { CubicalType } = require('../../types/location');
 const Cubical = require('../../../model/cubical');
 
 const createCubical = () => ({
     type: CubicalType,
     args: {
-        roomId: { type: GraphQLID }
+        roomId: { type: new GraphQLNonNull(GraphQLID) }
     },
     resolve: async (_, args) => {
         const { roomId } = args;

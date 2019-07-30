@@ -4,6 +4,7 @@ const Employee = require('../../model/employee');
 const { DateType } = require('./date');
 const { CubicalType } = require('./location');
 const Cubical = require('../../model/cubical');
+const Department = require('../../model/department');
 
 const ProjectType = new GraphQLObjectType({
     name: 'Project',
@@ -48,7 +49,13 @@ const EmployeeType = new GraphQLObjectType({
         type: { type: GraphQLString },
         assetNo: { type: GraphQLInt },
         designation: { type: GraphQLString },
-        department: { type: GraphQLString },
+        department: { 
+            type: DepartmentType,
+            resolve: async (parent, _) => {
+                const department = await Department.findById(parent.department);
+                return department;
+            }
+        },
         currentProject: {
             type: ProjectType,
             async resolve(parent, _) {
@@ -92,4 +99,21 @@ const EmployeeType = new GraphQLObjectType({
     })
 });
 
-module.exports = { EmployeeType, ExperienceInputType, ProjectType };
+const DepartmentType = new GraphQLObjectType({
+    name: 'Department',
+    fields: {
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        noOfEmployees: { 
+            type: new GraphQLList(EmployeeType),
+            resolve: async (parent, _) => {
+                const employees = await Employee.find({ department: parent.id });
+                return employees;
+            } 
+        },
+        functionality: { type: GraphQLString },
+        majorAreas: { type: new GraphQLList(GraphQLString) }
+    }
+});
+
+module.exports = { EmployeeType, ExperienceInputType, ProjectType, DepartmentType };
