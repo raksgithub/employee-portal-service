@@ -1,5 +1,6 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
+const bodyParser = require('body-parser');
 const schema = require('./schema');
 require('dotenv').config();
 require('./db');
@@ -19,6 +20,12 @@ const checkToken = async (req, res, next) => {
         next();
     }
 }
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 app.use('/graphql', checkToken, graphqlHTTP(req => ({
     schema,
