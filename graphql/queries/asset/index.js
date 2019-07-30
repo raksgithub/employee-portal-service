@@ -7,7 +7,8 @@ const fetchAssetById = () => ({
     args: {
         id: { type: GraphQLID }
     },
-    resolve: async (_, args) => {
+    resolve: async (_, args, context) => {
+        console.log('context:', context);
         const asset = await Asset.findById(args.id);
         return asset;
     }

@@ -1,5 +1,5 @@
 const { GraphQLID, GraphQLList } = require('graphql');
-const { UserType } = require('../../types');
+const { UserType } = require('../../types/user');
 const User = require('../../../model');
 
 const fetchUserById = () => ({

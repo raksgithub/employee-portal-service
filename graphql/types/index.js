@@ -5,15 +5,6 @@ const { DateType } = require('./date');
 const { CubicalType } = require('./location');
 const Cubical = require('../../model/cubical');
 
-const UserType = new GraphQLObjectType({
-    name: 'User',
-    fields: () => ({
-        id: { type: GraphQLID },
-        username: { type: GraphQLString },
-        password: { type: GraphQLString }
-    })
-});
-
 const ProjectType = new GraphQLObjectType({
     name: 'Project',
     fields: () => ({
@@ -101,4 +92,4 @@ const EmployeeType = new GraphQLObjectType({
     })
 });
 
-module.exports = { UserType, EmployeeType, ExperienceInputType, ProjectType };
+module.exports = { EmployeeType, ExperienceInputType, ProjectType };
