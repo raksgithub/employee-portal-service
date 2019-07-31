@@ -10,6 +10,7 @@ const DateType = new GraphQLScalarType({
         return parsedDate;
     },
     serialize(value) {
+        console.log('Value:', value);
         return value.getTime();
     },
     // parseLiteral(ast) {

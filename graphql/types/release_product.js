@@ -5,6 +5,7 @@ const Release = require('../../model/release');
 
 const ProductType = new GraphQLObjectType({
     name: 'Product',
+    description: "This is product type.",
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
@@ -18,14 +19,14 @@ const ProductType = new GraphQLObjectType({
         previousReleases: {
             type: new GraphQLList(ReleaseType),
             resolve: async (parent, _) => {
-                const previousReleases = await Release.find({ productId: parent.id, isReleaseActive: false }).sort({ releaseEndDate: -1 });
+                const previousReleases = await Release.find({ productId: parent.id, isReleaseActive: false, releaseEndDate: { $lte: new Date() } }).sort({ releaseEndDate: -1 });
                 return previousReleases;
             }
         },
         upcomingReleases: { 
-            type: ReleaseType,
+            type: new GraphQLList(ReleaseType),
             resolve: async (parent, _) => {
-                const upcomingReleases = await Release.find({ productId: parent.id, releaseStartDate: { $gte: new Date() } });
+                const upcomingReleases = await Release.find({ productId: parent.id, releaseStartDate: { $gte: new Date() } }).sort({ releaseStartDate: -1 });
                 return upcomingReleases;
             } 
         },
@@ -47,6 +48,7 @@ const ProductType = new GraphQLObjectType({
 
 const ReleaseType = new GraphQLObjectType({
     name: 'Release',
+    description: "This is release type.",
     fields: () => ({
         id: { type: GraphQLID },
         releaseVersion: { type: GraphQLString },
