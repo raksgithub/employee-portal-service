@@ -1,6 +1,7 @@
 const { GraphQLString, GraphQLNonNull, GraphQLID, GraphQLList, GraphQLBoolean } = require('graphql');
 const { ProductType } = require('../../types/release_product');
 const Product = require('../../../model/product');
+const { PlatformEnumType } = require('../../types/enums');
 
 const addSubProductsToProduct = () => ({
     type: ProductType,
@@ -20,7 +21,7 @@ const createNewProduct = () => ({
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         domain: { type: new GraphQLNonNull(GraphQLString) },
-        platforms: { type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(GraphQLString))) },
+        platforms: { type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(PlatformEnumType))) },
         isProductActive: { type: new GraphQLNonNull(GraphQLBoolean) }
     },
     async resolve(_, args) {

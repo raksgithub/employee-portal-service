@@ -2,6 +2,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLBoolean, GraphQLList
 const { DateType } = require('./date');
 const Product = require('../../model/product');
 const Release = require('../../model/release');
+const { PlatformEnumType } = require('./enums');
 
 const ProductType = new GraphQLObjectType({
     name: 'Product',
@@ -31,7 +32,7 @@ const ProductType = new GraphQLObjectType({
             } 
         },
         domain: { type: GraphQLString },
-        platforms: { type: new GraphQLList(GraphQLString) },
+        platforms: { type: new GraphQLList(PlatformEnumType) },
         isProductActive: { type: GraphQLBoolean },
         subProducts: { 
             type: new GraphQLList(ProductType),
