@@ -32,8 +32,8 @@ app.use(bodyParser.json());
 // Session Middleware
 app.use(session({
     genid: req => {
-        console.log('Inside the session middleware');
-        console.log('SessionId:', req.sessionID);
+        // console.log('Inside the session middleware');
+        // console.log('SessionId:', req.sessionID);
         return uuidv4();
     },
     secret: process.env.SECRET_KEY,

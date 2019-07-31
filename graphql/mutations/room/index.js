@@ -1,4 +1,4 @@
-const { GraphQLString, GraphQLNonNull, GraphQLInt, GraphQLID, GraphQLList } = require('graphql');
+const { GraphQLString, GraphQLNonNull, GraphQLInt } = require('graphql');
 const { RoomType } = require('../../types/location');
 const Room = require('../../../model/room');
 

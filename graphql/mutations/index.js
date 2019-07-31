@@ -6,6 +6,9 @@ const { createNewAsset, tagEmployeeToAsset } = require('./asset');
 const { createRoom } = require('./room');
 const { createCubical } = require('./cubical');
 const { createDepartment } = require('./department');
+const { createNewOffice } = require('./office');
+const { createNewRelease, addProductToRelease } = require('./release');
+const { createNewProduct, addSubProductsToProduct } = require('./product');
 
 const RootMutation = new GraphQLObjectType({
     name: 'RootMutation',
@@ -21,7 +24,12 @@ const RootMutation = new GraphQLObjectType({
         tagEmployeeToAsset: tagEmployeeToAsset(),
         createRoom: createRoom(),
         createCubical: createCubical(),
-        createDepartment: createDepartment()
+        createDepartment: createDepartment(),
+        createNewOffice: createNewOffice(),
+        createNewRelease: createNewRelease(),
+        addProductToRelease: addProductToRelease(),
+        createNewProduct: createNewProduct(),
+        addSubProductsToProduct: addSubProductsToProduct()
     }
 });
 

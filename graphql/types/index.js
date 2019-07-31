@@ -101,7 +101,7 @@ const EmployeeType = new GraphQLObjectType({
 
 const DepartmentType = new GraphQLObjectType({
     name: 'Department',
-    fields: {
+    fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         noOfEmployees: { 
@@ -113,7 +113,7 @@ const DepartmentType = new GraphQLObjectType({
         },
         functionality: { type: GraphQLString },
         majorAreas: { type: new GraphQLList(GraphQLString) }
-    }
+    })
 });
 
 module.exports = { EmployeeType, ExperienceInputType, ProjectType, DepartmentType };

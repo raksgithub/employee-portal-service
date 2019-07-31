@@ -9,7 +9,7 @@ const createProject = () => ({
         domain: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: new GraphQLNonNull(GraphQLString) }
     },
-    async resolve(parent, args) {
+    async resolve(_, args) {
         const project = {
             name: args.name,
             domain: args.domain,
