@@ -9,6 +9,7 @@ const { createDepartment } = require('./department');
 const { createNewOffice } = require('./office');
 const { createNewRelease, addProductToRelease } = require('./release');
 const { createNewProduct, addSubProductsToProduct } = require('./product');
+const { createNewCompany } = require('./company');
 
 const RootMutation = new GraphQLObjectType({
     name: 'RootMutation',
@@ -29,7 +30,8 @@ const RootMutation = new GraphQLObjectType({
         createNewRelease: createNewRelease(),
         addProductToRelease: addProductToRelease(),
         createNewProduct: createNewProduct(),
-        addSubProductsToProduct: addSubProductsToProduct()
+        addSubProductsToProduct: addSubProductsToProduct(),
+        createNewCompany: createNewCompany()
     }
 });
 

@@ -9,6 +9,7 @@ const { fetchDepartmentById, fetchDepartments } = require('./department');
 const { fetchReleaseById, fetchReleases } = require('./release');
 const { fetchProductById, fetchProducts } = require('./product');
 const { fetchOfficeById, fetchOffices } = require('./office');
+const { fetchCompanyById, fetchCompanies } = require('./company');
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQuery',
@@ -32,7 +33,9 @@ const RootQuery = new GraphQLObjectType({
         product: fetchProductById(),
         products: fetchProducts(),
         office: fetchOfficeById(),
-        offices: fetchOffices()
+        offices: fetchOffices(),
+        company: fetchCompanyById(),
+        companies: fetchCompanies()
     }
 });
 

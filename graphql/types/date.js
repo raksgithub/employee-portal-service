@@ -6,19 +6,12 @@ const DateType = new GraphQLScalarType({
     description: "This is a Date type",
     parseValue(value) {
         const parsedDate = moment(value).format('DD/MM/YYYY');
-        console.log('ParsedDate:', parsedDate);
         return parsedDate;
     },
     serialize(value) {
         console.log('Value:', value);
-        return value.getTime();
-    },
-    // parseLiteral(ast) {
-    //     if (ast.kind === Kind.INT) {
-    //         return parseInt(ast.value, 10); // ast value is always in string format
-    //     }
-    //     return null;
-    // }
+        return moment(value);
+    }
 });
 
 module.exports = { DateType };

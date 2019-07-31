@@ -5,9 +5,11 @@ const { DateType } = require('./date');
 const { CubicalType } = require('./location');
 const Cubical = require('../../model/cubical');
 const Department = require('../../model/department');
+const Company = require('../../model/company');
 
 const ProjectType = new GraphQLObjectType({
     name: 'Project',
+    description: 'This is project type.',
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
@@ -25,6 +27,7 @@ const ProjectType = new GraphQLObjectType({
 
 const ExperienceInputType = new GraphQLInputObjectType({
     name: 'ExperienceInput',
+    description: 'This is experience input type.',
     fields: () => ({
         joiningDate: { type: DateType },
         totalExperience: { type: GraphQLString },
@@ -34,6 +37,7 @@ const ExperienceInputType = new GraphQLInputObjectType({
 
 const ExperienceType = new GraphQLObjectType({
     name: 'Experience',
+    description: 'This is experience type.',
     fields: () => ({
         joiningDate: { type: DateType },
         totalExperience: { type: GraphQLString },
@@ -43,6 +47,7 @@ const ExperienceType = new GraphQLObjectType({
 
 const EmployeeType = new GraphQLObjectType({
     name: 'Employee',
+    description: 'This is employee type.',
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
@@ -101,6 +106,7 @@ const EmployeeType = new GraphQLObjectType({
 
 const DepartmentType = new GraphQLObjectType({
     name: 'Department',
+    description: 'This is department type',
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
@@ -116,4 +122,28 @@ const DepartmentType = new GraphQLObjectType({
     })
 });
 
-module.exports = { EmployeeType, ExperienceInputType, ProjectType, DepartmentType };
+const CompanyType = new GraphQLObjectType({
+    name: 'Company',
+    description: 'This is company type.',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        founded: { type: DateType },
+        description: { type: GraphQLString },
+        stockPrice: { type: GraphQLString },
+        revenue: { type: GraphQLString },
+        license: { type: GraphQLString },
+        subsidiaries: {
+            type: new GraphQLList(CompanyType),
+            resolve: async (parent, _) => {
+                let subsidiaries = parent.subsidiaries;
+                subsidiaries = await subsidiaries.map(async companyId => {
+                    return await Company.findById(companyId);
+                });
+                return subsidiaries;
+            }
+        }
+    })
+});
+
+module.exports = { EmployeeType, ExperienceInputType, ProjectType, DepartmentType, CompanyType };
