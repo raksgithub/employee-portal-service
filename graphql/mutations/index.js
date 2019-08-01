@@ -19,6 +19,7 @@ const { createNewCompany } = require('./company');
 
 const RootMutation = new GraphQLObjectType({
     name: 'RootMutation',
+    description: 'Root mutation comprising all mutations.',
     fields: {
         createUser: createUser(),
         signInUser: signInUser(),

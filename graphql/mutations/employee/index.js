@@ -4,6 +4,7 @@ const Employee = require('../../../model/employee');
 
 const createEmployee = () => ({
     type: EmployeeType,
+    description: 'Create a new employee using this mutation.',
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         designation: { type: new GraphQLNonNull(GraphQLString) },

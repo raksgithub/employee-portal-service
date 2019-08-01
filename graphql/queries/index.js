@@ -13,6 +13,7 @@ const { fetchCompanyById, fetchCompanies } = require('./company');
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQuery',
+    description: 'Root query comprising all queries.',
     fields: {
         user: fetchUserById(),
         users: fetchUsers(),
