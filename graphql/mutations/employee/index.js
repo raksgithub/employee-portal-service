@@ -1,5 +1,5 @@
 const { GraphQLString, GraphQLList, GraphQLNonNull, GraphQLID } = require('graphql');
-const { EmployeeType, ExperienceInputType } = require('../../types');
+const { EmployeeType, ExperienceInputType, EmployeeGeneralInfoInputType } = require('../../types');
 const Employee = require('../../../model/employee');
 
 const createEmployee = () => ({
@@ -71,4 +71,23 @@ const assignEmployeeToDepartment = () => ({
     }
 });
 
-module.exports = { createEmployee, addRelationshipToEmployees, assignCubicalToEmployee, assignEmployeeToDepartment };
+const addEmployeeGenralInfo = () => ({
+    type: EmployeeType,
+    args: {
+        empId: { type: new GraphQLNonNull(GraphQLID) },
+        generalInfo: { type: new GraphQLNonNull(EmployeeGeneralInfoInputType) }
+    },
+    resolve: async (_, args) => {
+        const { empId, generalInfo } = args;
+        const updatedEmployee = await Employee.findByIdAndUpdate(empId, { generalInfo }, { new: true });
+        return updatedEmployee;
+    }
+});
+
+module.exports = { 
+    createEmployee, 
+    addRelationshipToEmployees, 
+    assignCubicalToEmployee, 
+    assignEmployeeToDepartment,
+    addEmployeeGenralInfo 
+};

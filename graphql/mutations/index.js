@@ -1,6 +1,12 @@
 const { GraphQLObjectType } = require('graphql');
 const { createUser, signInUser } = require('./user');
-const { createEmployee, addRelationshipToEmployees, assignCubicalToEmployee, assignEmployeeToDepartment } = require('./employee');
+const { 
+    createEmployee, 
+    addRelationshipToEmployees, 
+    assignCubicalToEmployee, 
+    assignEmployeeToDepartment,
+    addEmployeeGenralInfo 
+} = require('./employee');
 const { createProject } = require('./project');
 const { createNewAsset, tagEmployeeToAsset } = require('./asset');
 const { createRoom } = require('./room');
@@ -21,6 +27,7 @@ const RootMutation = new GraphQLObjectType({
         createRelationShipToEmployees: addRelationshipToEmployees(),
         assignCubicalToEmployee: assignCubicalToEmployee(),
         assignEmployeeToDepartment: assignEmployeeToDepartment(),
+        addEmployeeGenralInfo: addEmployeeGenralInfo(),
         createNewAsset: createNewAsset(),
         tagEmployeeToAsset: tagEmployeeToAsset(),
         createRoom: createRoom(),

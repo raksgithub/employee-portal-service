@@ -15,7 +15,22 @@ const EmployeeSchema = new Schema({
         skillSet: { type: [String], index: true },
         totalExperience: String
     },
-    employeesComeUnder: { type: [String], index: true }
+    employeesComeUnder: { type: [String], index: true },
+    generalInfo: {
+        firstName: String,
+        middleName: String,
+        lastName: String,
+        dob: { type: Date, default: Date.now },
+        gender: String,
+        address: String,
+        contactNo: String,
+        maidenName: String,
+        fatherName: String,
+        motherName: String,
+        maritalStatus: String,
+        spouseName: String,
+        children: Number
+    }
 });
 
 module.exports = mongoose.model('Employee', EmployeeSchema);

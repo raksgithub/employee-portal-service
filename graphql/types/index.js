@@ -15,12 +15,12 @@ const ProjectType = new GraphQLObjectType({
         name: { type: GraphQLString },
         domain: { type: GraphQLString },
         description: { type: GraphQLString },
-        employees: { 
+        employees: {
             type: new GraphQLList(EmployeeType),
             async resolve(parent, args) {
                 const employees = Employee.find({ currentProjectId: parent.id });
                 return employees;
-            } 
+            }
         }
     })
 });
@@ -45,6 +45,34 @@ const ExperienceType = new GraphQLObjectType({
     })
 });
 
+const fields = {
+    firstName: { type: GraphQLString },
+    middleName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    dob: { type: DateType },
+    gender: { type: GraphQLString },
+    address: { type: GraphQLString },
+    contactNo: { type: GraphQLString },
+    maidenName: { type: GraphQLString },
+    fatherName: { type: GraphQLString },
+    motherName: { type: GraphQLString },
+    maritalStatus: { type: GraphQLString },
+    spouseName: { type: GraphQLString },
+    children: { type: GraphQLInt }
+}
+
+const EmployeeGeneralInfoInputType = new GraphQLInputObjectType({
+    name: 'EmployeeGeneralInfoInput',
+    description: 'This is employee general info input type.',
+    fields
+});
+
+const EmployeeGeneralInfoType = new GraphQLObjectType({
+    name: 'EmployeeGeneralInfo',
+    description: 'This is employee general info type.',
+    fields
+});
+
 const EmployeeType = new GraphQLObjectType({
     name: 'Employee',
     description: 'This is employee type.',
@@ -54,7 +82,7 @@ const EmployeeType = new GraphQLObjectType({
         type: { type: GraphQLString },
         assetNo: { type: GraphQLInt },
         designation: { type: GraphQLString },
-        department: { 
+        department: {
             type: DepartmentType,
             resolve: async (parent, _) => {
                 const department = await Department.findById(parent.department);
@@ -81,6 +109,7 @@ const EmployeeType = new GraphQLObjectType({
         experience: {
             type: ExperienceType
         },
+        generalInfo: { type: EmployeeGeneralInfoType },
         employeesComeUnder: {
             type: new GraphQLList(EmployeeType),
             resolve: async (parent, _) => {
@@ -110,12 +139,12 @@ const DepartmentType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
-        noOfEmployees: { 
+        noOfEmployees: {
             type: new GraphQLList(EmployeeType),
             resolve: async (parent, _) => {
                 const employees = await Employee.find({ department: parent.id });
                 return employees;
-            } 
+            }
         },
         functionality: { type: GraphQLString },
         majorAreas: { type: new GraphQLList(GraphQLString) }
@@ -146,4 +175,12 @@ const CompanyType = new GraphQLObjectType({
     })
 });
 
-module.exports = { EmployeeType, ExperienceInputType, ProjectType, DepartmentType, CompanyType };
+module.exports = {
+    EmployeeType,
+    ExperienceInputType,
+    ProjectType,
+    DepartmentType,
+    CompanyType,
+    EmployeeGeneralInfoInputType,
+    EmployeeGeneralInfoType
+};
