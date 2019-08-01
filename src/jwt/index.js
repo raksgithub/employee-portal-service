@@ -11,8 +11,8 @@ const signOptions = {
     expiresIn: "2d"
 }
 
-const privateKey = fs.readFileSync(path.join(__dirname, '../../RSA_keys', 'private.key.txt'));
-const publicKey = fs.readFileSync(path.join(__dirname, '../../RSA_keys', 'public.key.txt'));
+const privateKey = fs.readFileSync(path.join(__dirname, '../../../RSA_keys', 'private.key.txt'));
+const publicKey = fs.readFileSync(path.join(__dirname, '../../../RSA_keys', 'public.key.txt'));
 
 const signToken = async payload => {
     // Sign token wrapping payload provided by the user

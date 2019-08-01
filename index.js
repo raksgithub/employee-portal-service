@@ -1,12 +1,12 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const bodyParser = require('body-parser');
-const schema = require('./schema');
+const schema = require('./src/schema');
 const session = require('express-session');
 const uuidv4 = require('node-uuid');
 require('dotenv').config();
-require('./db');
-const { getUserId } = require('./jwt');
+require('./src/db');
+const { getUserId } = require('./src/jwt');
 
 const app = express();
 
