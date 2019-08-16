@@ -1,17 +1,19 @@
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const bodyParser = require('body-parser');
-const schema = require('./src/schema');
-const session = require('express-session');
-const uuidv4 = require('node-uuid');
-require('dotenv').config();
-require('./src/db');
-const { getUserId } = require('./src/jwt');
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import bodyParser from 'body-parser';
+import schema from './src/schema';
+import session from 'express-session';
+import uuidv4 from 'node-uuid';
+import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
+import('./src/db');
+import { getUserId } from './src/jwt';
 
 const app = express();
 
-// Token checking middleware 
-const checkToken = async (req, res, next) => {
+// Token veryfying middleware 
+const verifyToken = async (req, res, next) => {
     try {
         const token = req.headers['authorization'];
         const userId = await getUserId(token);
@@ -22,6 +24,9 @@ const checkToken = async (req, res, next) => {
         next();
     }
 }
+
+// Chross Origin Resource Sharing (CORS) Middleware
+app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,15 +46,24 @@ app.use(session({
     saveUninitialized: true
 }));
 
-// GraphQL Middleware
-app.use('/graphql', checkToken, graphqlHTTP(req => ({
+// GraphQL Apollo Server
+const server = new ApolloServer({
     schema,
-    graphiql: process.env.NODE_ENV === 'development',
-    context: { userId: req.userId }
-})));
+    context: ({req, res}) => ({
+        userId: req.userId
+    })
+});
+
+// Make use of verifyToken middleware for authentication token verifying
+app.use(verifyToken);
+
+// Binding an existing Express App to Apollo Server 
+// Apollo Server plays as a middleware to Express App
+server.applyMiddleware({ app });
 
 const port = process.env.PORT || 5000;
 
+// Starting the server bootstrapped with Express + Apollo Server
 app.listen(port, () => {
-    console.log(`Server is running at ${port}`);
+    console.log(`🚀 Server is running at http://localhost:${port}${server.graphqlPath}`);
 });

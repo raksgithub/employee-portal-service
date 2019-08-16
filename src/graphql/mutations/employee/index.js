@@ -1,8 +1,8 @@
-const { GraphQLString, GraphQLList, GraphQLNonNull, GraphQLID } = require('graphql');
-const { EmployeeType, ExperienceInputType, EmployeeGeneralInfoInputType } = require('../../types');
-const Employee = require('../../../model/employee');
+import { GraphQLString, GraphQLList, GraphQLNonNull, GraphQLID } from 'graphql';
+import { EmployeeType, ExperienceInputType, EmployeeGeneralInfoInputType } from '../../types';
+import Employee from '../../../model/employee';
 
-const createEmployee = () => ({
+export const createEmployee = () => ({
     type: EmployeeType,
     description: 'Create a new employee using this mutation.',
     args: {
@@ -27,7 +27,7 @@ const createEmployee = () => ({
     }
 });
 
-const addRelationshipToEmployees = () => ({
+export const addRelationshipToEmployees = () => ({
     type: EmployeeType,
     args: {
         sourceEmployee: {
@@ -48,7 +48,7 @@ const addRelationshipToEmployees = () => ({
     }
 });
 
-const assignCubicalToEmployee = () => ({
+export const assignCubicalToEmployee = () => ({
     type: EmployeeType,
     args: {
         employeeId: { type: new GraphQLNonNull(GraphQLID) },
@@ -60,7 +60,7 @@ const assignCubicalToEmployee = () => ({
     }
 });
 
-const assignEmployeeToDepartment = () => ({
+export const assignEmployeeToDepartment = () => ({
     type: EmployeeType,
     args: {
         employeeId: { type: new GraphQLNonNull(GraphQLID) },
@@ -72,7 +72,7 @@ const assignEmployeeToDepartment = () => ({
     }
 });
 
-const addEmployeeGenralInfo = () => ({
+export const addEmployeeGenralInfo = () => ({
     type: EmployeeType,
     args: {
         empId: { type: new GraphQLNonNull(GraphQLID) },
@@ -84,11 +84,3 @@ const addEmployeeGenralInfo = () => ({
         return updatedEmployee;
     }
 });
-
-module.exports = { 
-    createEmployee, 
-    addRelationshipToEmployees, 
-    assignCubicalToEmployee, 
-    assignEmployeeToDepartment,
-    addEmployeeGenralInfo 
-};

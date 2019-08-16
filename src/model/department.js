@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const DepartmentSchema = new Schema({
@@ -7,4 +7,4 @@ const DepartmentSchema = new Schema({
     majorAreas: { type: [String], index: true }
 });
 
-module.exports = mongoose.model('Department', DepartmentSchema);
+export default mongoose.model('Department', DepartmentSchema);

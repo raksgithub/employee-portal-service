@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const CubicalSchema = new Schema({
@@ -7,4 +7,4 @@ const CubicalSchema = new Schema({
     roomNo: String,
 });
 
-module.exports = mongoose.model('Cubical', CubicalSchema);
+export default mongoose.model('Cubical', CubicalSchema);

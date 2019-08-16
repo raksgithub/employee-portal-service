@@ -1,9 +1,9 @@
-const { GraphQLID, GraphQLNonNull, GraphQLString, GraphQLList } = require('graphql');
-const { CompanyType } = require('../../types');
-const Company = require('../../../model/company');
-const { DateType } = require('../../types/date');
+import { GraphQLID, GraphQLNonNull, GraphQLString, GraphQLList } from 'graphql';
+import { CompanyType } from '../../types';
+import Company from '../../../model/company';
+import { DateType } from '../../types/date';
 
-const createNewCompany = () => ({
+export const createNewCompany = () => ({
     type: CompanyType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
@@ -18,6 +18,4 @@ const createNewCompany = () => ({
         const newCompany = await Company.create(args);
         return newCompany;
     }
-});
-
-module.exports = { createNewCompany };  
+}); 

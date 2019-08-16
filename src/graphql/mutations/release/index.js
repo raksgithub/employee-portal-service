@@ -1,9 +1,9 @@
-const { GraphQLString, GraphQLNonNull, GraphQLBoolean, GraphQLID } = require('graphql');
-const { ReleaseType } = require('../../types/release_product');
-const { DateType } = require('../../types/date');
-const Release = require('../../../model/release');
+import { GraphQLString, GraphQLNonNull, GraphQLBoolean, GraphQLID } from 'graphql';
+import { ReleaseType } from '../../types/release_product';
+import { DateType } from '../../types/date';
+import Release from '../../../model/release';
 
-const addProductToRelease = () => ({
+export const addProductToRelease = () => ({
     type: ReleaseType,
     args: {
         productId: { type: GraphQLID },
@@ -16,7 +16,7 @@ const addProductToRelease = () => ({
     }
 });
 
-const createNewRelease = () => ({
+export const createNewRelease = () => ({
     type: ReleaseType,
     args: {
         releaseVersion: { type: new GraphQLNonNull(GraphQLString) },
@@ -31,5 +31,3 @@ const createNewRelease = () => ({
         return newRelease;
     }
 });
-
-module.exports = { createNewRelease, addProductToRelease };

@@ -1,18 +1,18 @@
-const { GraphQLObjectType } = require('graphql');
-const { fetchUserById, fetchUsers } = require('./user');
-const { fetchEmployeeById, fetchEmployees } = require('./employee');
-const { fetchProjectById, fetchProjects } = require('./project');
-const { fetchAssetById, fetchAssets } = require('./asset');
-const { fetchCubicalById, fetchCubicals } = require('./cubical');
-const { fetchRoomById, fetchRooms } = require('./room');
-const { fetchDepartmentById, fetchDepartments } = require('./department');
-const { fetchReleaseById, fetchReleases } = require('./release');
-const { fetchProductById, fetchProducts } = require('./product');
-const { fetchOfficeById, fetchOffices } = require('./office');
-const { fetchCompanyById, fetchCompanies } = require('./company');
+import { GraphQLObjectType } from 'graphql';
+import { fetchUserById, fetchUsers } from './user';
+import { fetchEmployeeById, fetchEmployees } from './employee';
+import { fetchProjectById, fetchProjects } from './project';
+import { fetchAssetById, fetchAssets } from './asset';
+import { fetchCubicalById, fetchCubicals } from './cubical';
+import { fetchRoomById, fetchRooms } from './room';
+import { fetchDepartmentById, fetchDepartments } from './department';
+import { fetchReleaseById, fetchReleases } from './release';
+import { fetchProductById, fetchProducts } from './product';
+import { fetchOfficeById, fetchOffices } from './office';
+import { fetchCompanyById, fetchCompanies } from './company';
 
-const RootQuery = new GraphQLObjectType({
-    name: 'RootQuery',
+export default new GraphQLObjectType({
+    name: 'QueryType',
     description: 'Root query comprising all queries.',
     fields: {
         user: fetchUserById(),
@@ -39,5 +39,3 @@ const RootQuery = new GraphQLObjectType({
         companies: fetchCompanies()
     }
 });
-
-module.exports = { RootQuery };

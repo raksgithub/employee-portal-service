@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const { ProductType } = require('../../types/release_product');
-const Product = require('../../../model/product');
+import { GraphQLID, GraphQLList } from 'graphql';
+import { ProductType } from '../../types/release_product';
+import Product from '../../../model/product';
 
-const fetchProductById = () => ({
+export const fetchProductById = () => ({
     type: ProductType,
     args: { 
         id: { type: GraphQLID }
@@ -13,12 +13,10 @@ const fetchProductById = () => ({
     }
 });
 
-const fetchProducts = () => ({
+export const fetchProducts = () => ({
     type: new GraphQLList(ProductType),
     resolve: async (_, __) => {
         const products = await Product.find();
         return products;
     }
 });
-
-module.exports = { fetchProductById, fetchProducts };

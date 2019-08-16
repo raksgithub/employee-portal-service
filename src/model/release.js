@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const ReleaseSchema = new Schema({
@@ -10,4 +10,4 @@ const ReleaseSchema = new Schema({
     productId: String
 });
 
-module.exports = mongoose.model('Release', ReleaseSchema);
+export default mongoose.model('Release', ReleaseSchema);

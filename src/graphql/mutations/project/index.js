@@ -1,8 +1,8 @@
-const { GraphQLString, GraphQLNonNull } = require('graphql');
-const { ProjectType } = require('../../types');
-const Project = require('../../../model/project');
+import { GraphQLString, GraphQLNonNull } from 'graphql';
+import { ProjectType } from '../../types';
+import Project from '../../../model/project';
 
-const createProject = () => ({
+export const createProject = () => ({
     type: ProjectType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
@@ -19,5 +19,3 @@ const createProject = () => ({
         return newProject;
     }
 });
-
-module.exports = { createProject };

@@ -1,10 +1,10 @@
-const { GraphQLString, GraphQLNonNull } = require('graphql');
-const { AuthenticationType } = require('../../types/user');
-const { generateHash, comparePassword } = require('../../../jwt/bcrypt');
-const { signToken } = require('../../../jwt');
-const User = require('../../../model');
+import { GraphQLString, GraphQLNonNull } from 'graphql';
+import { AuthenticationType } from '../../types/user';
+import { generateHash, comparePassword } from '../../../jwt/bcrypt';
+import { signToken } from '../../../jwt';
+import User from '../../../model';
 
-const createUser = () => ({
+export const createUser = () => ({
     type: AuthenticationType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
@@ -27,7 +27,7 @@ const createUser = () => ({
     }
 });
 
-const signInUser = () => ({
+export const signInUser = () => ({
     type: AuthenticationType,
     args: {
         username: { type: new GraphQLNonNull(GraphQLString) },

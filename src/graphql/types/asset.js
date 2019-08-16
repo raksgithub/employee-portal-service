@@ -1,9 +1,9 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInputObjectType, GraphQLInt, GraphQLList } = require('graphql');
-const { EmployeeType } = require('./index');
-const Employee = require('../../model/employee');
-const Cubical = require('../../model/cubical');
-const { CubicalType } = require('./location');
-const { DateType } = require('./date');
+import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInputObjectType, GraphQLInt, GraphQLList } from 'graphql';
+import { EmployeeType } from './index';
+import Employee from '../../model/employee';
+import Cubical from '../../model/cubical';
+import { CubicalType } from './location';
+import { DateType } from './date';
 
 const SpecificationsInputType = new GraphQLInputObjectType({
     name: 'SpecificationsInput',

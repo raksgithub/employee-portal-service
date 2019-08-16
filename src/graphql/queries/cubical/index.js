@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const { CubicalType } = require('../../types/location');
-const Cubical = require('../../../model/cubical');
+import { GraphQLID, GraphQLList } from 'graphql';
+import { CubicalType } from '../../types/location';
+import Cubical from '../../../model/cubical';
 
-const fetchCubicalById = () => ({
+export const fetchCubicalById = () => ({
     type: CubicalType,
     args: { 
         id: { type: GraphQLID }
@@ -13,12 +13,10 @@ const fetchCubicalById = () => ({
     }
 });
 
-const fetchCubicals = () => ({
+export const fetchCubicals = () => ({
     type: new GraphQLList(CubicalType),
     resolve: async (_, __) => {
         const cubicals = await Cubical.find();
         return cubicals;
     }
 });
-
-module.exports = { fetchCubicalById, fetchCubicals };

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
@@ -10,4 +10,4 @@ const RoomSchema = new Schema({
     cubicals: { type: String, index: true }
 });
 
-module.exports = mongoose.model('Room', RoomSchema);
+export default mongoose.model('Room', RoomSchema);

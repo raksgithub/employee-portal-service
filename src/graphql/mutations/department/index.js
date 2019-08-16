@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLNonNull, GraphQLString, GraphQLList } = require('graphql');
-const { DepartmentType } = require('../../types');
-const Department = require('../../../model/department');
+import { GraphQLID, GraphQLNonNull, GraphQLString, GraphQLList } from 'graphql';
+import { DepartmentType } from '../../types';
+import Department from '../../../model/department';
 
-const createDepartment = () => ({
+export const createDepartment = () => ({
     type: DepartmentType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
@@ -15,5 +15,3 @@ const createDepartment = () => ({
         return newDepartment;
     }
 });
-
-module.exports = { createDepartment };  

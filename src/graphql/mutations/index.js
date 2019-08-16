@@ -1,24 +1,24 @@
-const { GraphQLObjectType } = require('graphql');
-const { createUser, signInUser } = require('./user');
-const { 
+import { GraphQLObjectType } from 'graphql';
+import { createUser, signInUser } from './user';
+import { 
     createEmployee, 
     addRelationshipToEmployees, 
     assignCubicalToEmployee, 
     assignEmployeeToDepartment,
     addEmployeeGenralInfo 
-} = require('./employee');
-const { createProject } = require('./project');
-const { createNewAsset, tagEmployeeToAsset } = require('./asset');
-const { createRoom } = require('./room');
-const { createCubical } = require('./cubical');
-const { createDepartment } = require('./department');
-const { createNewOffice } = require('./office');
-const { createNewRelease, addProductToRelease } = require('./release');
-const { createNewProduct, addSubProductsToProduct } = require('./product');
-const { createNewCompany } = require('./company');
+} from './employee';
+import { createProject } from './project';
+import { createNewAsset, tagEmployeeToAsset } from './asset';
+import { createRoom } from './room';
+import { createCubical } from './cubical';
+import { createDepartment } from './department';
+import { createNewOffice } from './office';
+import { createNewRelease, addProductToRelease } from './release';
+import { createNewProduct, addSubProductsToProduct } from './product';
+import { createNewCompany } from './company';
 
-const RootMutation = new GraphQLObjectType({
-    name: 'RootMutation',
+export default new GraphQLObjectType({
+    name: 'MutationType',
     description: 'Root mutation comprising all mutations.',
     fields: {
         createUser: createUser(),
@@ -42,5 +42,3 @@ const RootMutation = new GraphQLObjectType({
         createNewCompany: createNewCompany()
     }
 });
-
-module.exports = { RootMutation };

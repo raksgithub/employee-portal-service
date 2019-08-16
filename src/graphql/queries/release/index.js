@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const { ReleaseType } = require('../../types/release_product');
-const Release = require('../../../model/release');
+import { GraphQLID, GraphQLList } from 'graphql';
+import { ReleaseType } from '../../types/release_product';
+import Release from '../../../model/release';
 
-const fetchReleaseById = () => ({
+export const fetchReleaseById = () => ({
     type: ReleaseType,
     args: { 
         id: { type: GraphQLID }
@@ -13,12 +13,10 @@ const fetchReleaseById = () => ({
     }
 });
 
-const fetchReleases = () => ({
+export const fetchReleases = () => ({
     type: new GraphQLList(ReleaseType),
     resolve: async (_, __) => {
         const releases = await Release.find();
         return releases;
     }
 });
-
-module.exports = { fetchReleaseById, fetchReleases };

@@ -1,8 +1,8 @@
-const { GraphQLString, GraphQLNonNull } = require('graphql');
-const { OfficeType, AddressInputType } = require('../../types/office');
-const Office = require('../../../model/office');
+import { GraphQLString, GraphQLNonNull } from 'graphql';
+import { OfficeType, AddressInputType } from '../../types/office';
+import Office from '../../../model/office';
 
-const createNewOffice = () => ({
+export const createNewOffice = () => ({
     type: OfficeType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
@@ -13,5 +13,3 @@ const createNewOffice = () => ({
         return newOffice;
     }
 });
-
-module.exports = { createNewOffice };

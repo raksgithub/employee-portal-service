@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLNonNull } = require('graphql');
-const { CubicalType } = require('../../types/location');
-const Cubical = require('../../../model/cubical');
+import { GraphQLID, GraphQLNonNull } from 'graphql';
+import { CubicalType } from '../../types/location';
+import Cubical from '../../../model/cubical';
 
-const createCubical = () => ({
+export const createCubical = () => ({
     type: CubicalType,
     args: {
         roomId: { type: new GraphQLNonNull(GraphQLID) }
@@ -15,5 +15,4 @@ const createCubical = () => ({
         return newCubical;
     }
 });
-
-module.exports = { createCubical };  
+ 

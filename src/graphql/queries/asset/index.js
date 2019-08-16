@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const Asset = require('../../../model/asset');
-const { AssetType } = require('../../types/asset');
+import { GraphQLID, GraphQLList } from 'graphql';
+import Asset from '../../../model/asset';
+import { AssetType } from '../../types/asset';
 
-const fetchAssetById = () => ({
+export const fetchAssetById = () => ({
     type: AssetType,
     args: {
         id: { type: GraphQLID }
@@ -14,12 +14,10 @@ const fetchAssetById = () => ({
     }
 });
 
-const fetchAssets = () => ({
+export const fetchAssets = () => ({
     type: new GraphQLList(AssetType),
     resolve: async (_, __) => {
         const assets = await Asset.find();
         return assets;
     }
-});
-
-module.exports = { fetchAssetById, fetchAssets };  
+}); 

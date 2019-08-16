@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const { ProjectType } = require('../../types');
-const Project = require('../../../model/project');
+import { GraphQLID, GraphQLList } from 'graphql';
+import { ProjectType } from '../../types';
+import Project from '../../../model/project';
 
-const fetchProjectById = () => ({
+export const fetchProjectById = () => ({
     type: ProjectType, 
     args: {
         id: { type: GraphQLID }
@@ -13,12 +13,10 @@ const fetchProjectById = () => ({
     }
 });
 
-const fetchProjects = () => ({
+export const fetchProjects = () => ({
     type: new GraphQLList(ProjectType),
     async resolve(parent, args) {
         const projects = await Project.find();
         return projects;
     }
 });
-
-module.exports = { fetchProjectById, fetchProjects };

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const AssetSchema = new Schema({
@@ -16,4 +16,4 @@ const AssetSchema = new Schema({
     location: String
 });
 
-module.exports = mongoose.model('Asset', AssetSchema);
+export default mongoose.model('Asset', AssetSchema);

@@ -1,9 +1,9 @@
-const { GraphQLString, GraphQLNonNull, GraphQLID, GraphQLInt } = require('graphql');
-const { AssetType, SpecificationsInputType } = require('../../types/asset');
-const Asset = require('../../../model/asset');
-const Employee = require('../../../model/employee');
+import { GraphQLString, GraphQLNonNull, GraphQLID, GraphQLInt } from 'graphql';
+import { AssetType, SpecificationsInputType } from '../../types/asset';
+import Asset from '../../../model/asset';
+import Employee from '../../../model/employee';
 
-const tagEmployeeToAsset = () => ({
+export const tagEmployeeToAsset = () => ({
     type: AssetType,
     args: {
         assetId: { type: GraphQLID },
@@ -21,7 +21,7 @@ const tagEmployeeToAsset = () => ({
     }
 });
 
-const createNewAsset = () => ({
+export const createNewAsset = () => ({
     type: AssetType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
@@ -34,5 +34,4 @@ const createNewAsset = () => ({
         return newAsset;
     }
 });
-
-module.exports = { createNewAsset, tagEmployeeToAsset }; 
+ 

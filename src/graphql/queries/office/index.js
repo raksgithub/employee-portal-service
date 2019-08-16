@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const { OfficeType } = require('../../types/office');
-const Office = require('../../../model/office');
+import { GraphQLID, GraphQLList } from 'graphql';
+import { OfficeType } from '../../types/office';
+import Office from '../../../model/office';
 
-const fetchOfficeById = () => ({
+export const fetchOfficeById = () => ({
     type: OfficeType,
     args: { 
         id: { type: GraphQLID }
@@ -13,12 +13,10 @@ const fetchOfficeById = () => ({
     }
 });
 
-const fetchOffices = () => ({
+export const fetchOffices = () => ({
     type: new GraphQLList(OfficeType),
     resolve: async (_, __) => {
         const offices = await Office.find();
         return offices;
     }
 });
-
-module.exports = { fetchOfficeById, fetchOffices };

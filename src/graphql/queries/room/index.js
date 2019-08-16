@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const { RoomType } = require('../../types/location');
-const Room = require('../../../model/room');
+import { GraphQLID, GraphQLList } from 'graphql';
+import { RoomType } from '../../types/location';
+import Room from '../../../model/room';
 
-const fetchRoomById = () => ({
+export const fetchRoomById = () => ({
     type: RoomType,
     args: { 
         id: { type: GraphQLID }
@@ -13,12 +13,10 @@ const fetchRoomById = () => ({
     }
 });
 
-const fetchRooms = () => ({
+export const fetchRooms = () => ({
     type: new GraphQLList(RoomType),
     resolve: async (_, __) => {
         const rooms = await Room.find();
         return rooms;
     }
 });
-
-module.exports = { fetchRoomById, fetchRooms };

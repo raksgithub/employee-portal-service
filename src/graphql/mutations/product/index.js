@@ -1,9 +1,9 @@
-const { GraphQLString, GraphQLNonNull, GraphQLID, GraphQLList, GraphQLBoolean } = require('graphql');
-const { ProductType } = require('../../types/release_product');
-const Product = require('../../../model/product');
-const { PlatformEnumType } = require('../../types/enums');
+import { GraphQLString, GraphQLNonNull, GraphQLID, GraphQLList, GraphQLBoolean } from 'graphql';
+import { ProductType } from '../../types/release_product';
+import Product from '../../../model/product';
+import { PlatformEnumType } from '../../types/enums';
 
-const addSubProductsToProduct = () => ({
+export const addSubProductsToProduct = () => ({
     type: ProductType,
     args: {
         productId: { type: new GraphQLNonNull(GraphQLID) },
@@ -16,7 +16,7 @@ const addSubProductsToProduct = () => ({
     }
 });
 
-const createNewProduct = () => ({
+export const createNewProduct = () => ({
     type: ProductType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
@@ -29,5 +29,3 @@ const createNewProduct = () => ({
         return newProduct;
     }
 });
-
-module.exports = { createNewProduct, addSubProductsToProduct };

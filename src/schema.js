@@ -1,8 +1,8 @@
-const { GraphQLSchema } = require('graphql');
-const { RootQuery } = require('./graphql/queries');
-const { RootMutation } = require('./graphql/mutations');
+import { GraphQLSchema } from 'graphql';
+import QueryType from './graphql/queries';
+import MutationType from './graphql/mutations';
 
-module.exports = new GraphQLSchema({
-    query: RootQuery,
-    mutation: RootMutation
+export default new GraphQLSchema({
+    query: QueryType,
+    mutation: MutationType
 });

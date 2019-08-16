@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const OfficeSchema = new Schema({
@@ -14,4 +14,4 @@ const OfficeSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Office', OfficeSchema);
+export default mongoose.model('Office', OfficeSchema);

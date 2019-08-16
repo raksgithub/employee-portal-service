@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASS;
 const mongo_uri = `mongodb://${dbUser}:${dbPassword}@ds231740.mlab.com:31740/employee-portal-service-db`;
@@ -17,4 +17,4 @@ mongoose.connection.on('error', err => {
     console.log('Error has occured', err);
 });
 
-module.exports = connection;
+export default connection;

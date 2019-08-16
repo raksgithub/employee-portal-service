@@ -1,8 +1,8 @@
-const { GraphQLString, GraphQLNonNull, GraphQLInt } = require('graphql');
-const { RoomType } = require('../../types/location');
-const Room = require('../../../model/room');
+import { GraphQLString, GraphQLNonNull, GraphQLInt } from 'graphql';
+import { RoomType } from '../../types/location';
+import Room from '../../../model/room';
 
-const createRoom = () => ({
+export const createRoom = () => ({
     type: RoomType,
     args: {
         roomNo: { type: new GraphQLNonNull(GraphQLInt) },
@@ -16,5 +16,3 @@ const createRoom = () => ({
         return newRoom;
     }
 });
-
-module.exports = { createRoom };

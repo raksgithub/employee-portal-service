@@ -1,8 +1,8 @@
-const { GraphQLID, GraphQLList } = require('graphql');
-const { UserType } = require('../../types/user');
-const User = require('../../../model');
+import { GraphQLID, GraphQLList } from 'graphql';
+import { UserType } from '../../types/user';
+import User from '../../../model';
 
-const fetchUserById = () => ({
+export const fetchUserById = () => ({
     type: UserType,
     args: {
         id: {
@@ -18,7 +18,7 @@ const fetchUserById = () => ({
     }
 });
 
-const fetchUsers = () => ({
+export const fetchUsers = () => ({
     type: new GraphQLList(UserType),
     async resolve(_, __, context) {
         if(!context.userId) {
@@ -28,5 +28,3 @@ const fetchUsers = () => ({
         return users;
     }
 });
-
-module.exports = { fetchUserById, fetchUsers };
