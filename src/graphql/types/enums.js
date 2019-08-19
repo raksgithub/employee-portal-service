@@ -1,6 +1,6 @@
 import { GraphQLEnumType } from 'graphql';
 
-export const PlatformEnumType = new GraphQLEnumType({
+const PlatformEnumType = new GraphQLEnumType({
     name: 'PlatformEnum',
     description: 'This is platform enum type.',
     values: {
@@ -11,7 +11,7 @@ export const PlatformEnumType = new GraphQLEnumType({
     }
 });
 
-export const DayEnumType = new GraphQLEnumType({
+const DayEnumType = new GraphQLEnumType({
     name: 'DayEnum',
     description: 'This is day enum type.',
     values: {
@@ -25,7 +25,7 @@ export const DayEnumType = new GraphQLEnumType({
     }
 });
 
-export const MonthEnumType = new GraphQLEnumType({
+const MonthEnumType = new GraphQLEnumType({
     name: 'MonthEnum',
     description: 'This is month enum type',
     values: {
@@ -43,3 +43,5 @@ export const MonthEnumType = new GraphQLEnumType({
         DECEMBER: { value: 'December' }
     }
 });
+
+export { PlatformEnumType, DayEnumType, MonthEnumType };

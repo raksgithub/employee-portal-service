@@ -1,7 +1,7 @@
 import { GraphQLScalarType } from 'graphql';
 import moment from 'moment';
 
-export const DateType = new GraphQLScalarType({
+const DateType = new GraphQLScalarType({
     name: 'Date',
     description: "This is a Date type",
     parseValue(value) {
@@ -13,3 +13,5 @@ export const DateType = new GraphQLScalarType({
         return moment(value);
     }
 });
+
+export { DateType };

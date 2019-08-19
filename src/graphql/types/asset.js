@@ -56,4 +56,4 @@ const AssetType = new GraphQLObjectType({
     })
 });
 
-module.exports = { AssetType, SpecificationsInputType };
+export { AssetType, SpecificationsInputType };

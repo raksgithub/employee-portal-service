@@ -2,7 +2,7 @@ import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInt } 
 import Room from '../../model/room';
 import Cubical from '../../model/cubical';
 
-export const RoomType = new GraphQLObjectType({
+const RoomType = new GraphQLObjectType({
     name: 'Room',
     fields: () => ({
         id: { type: GraphQLID },
@@ -21,7 +21,7 @@ export const RoomType = new GraphQLObjectType({
     })
 });
 
-export const CubicalType = new GraphQLObjectType({
+const CubicalType = new GraphQLObjectType({
     name: 'Cubical',
     fields: () => ({
         id: { type: GraphQLID },
@@ -33,3 +33,5 @@ export const CubicalType = new GraphQLObjectType({
         }
     })
 });
+
+export { RoomType, CubicalType };
