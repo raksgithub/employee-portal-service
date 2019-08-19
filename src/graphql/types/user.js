@@ -1,5 +1,5 @@
-const { GraphQLObjectType, GraphQLID, GraphQLString } = require('graphql');
-const User = require('../../model');
+import { GraphQLObjectType, GraphQLID, GraphQLString } from 'graphql';
+import User from '../../model';
 
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -26,4 +26,4 @@ const AuthenticationType = new GraphQLObjectType({
     })
 });
 
-module.exports = { UserType, AuthenticationType };
+export { UserType, AuthenticationType };

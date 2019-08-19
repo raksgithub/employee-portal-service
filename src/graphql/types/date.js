@@ -1,7 +1,7 @@
-const { GraphQLScalarType } = require('graphql');
-const moment = require('moment');
+import { GraphQLScalarType } from 'graphql';
+import moment from 'moment';
 
-const DateType = new GraphQLScalarType({
+export const DateType = new GraphQLScalarType({
     name: 'Date',
     description: "This is a Date type",
     parseValue(value) {
@@ -13,5 +13,3 @@ const DateType = new GraphQLScalarType({
         return moment(value);
     }
 });
-
-module.exports = { DateType };

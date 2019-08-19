@@ -1,6 +1,6 @@
-const { GraphQLEnumType } = require('graphql');
+import { GraphQLEnumType } from 'graphql';
 
-const PlatformEnumType = new GraphQLEnumType({
+export const PlatformEnumType = new GraphQLEnumType({
     name: 'PlatformEnum',
     description: 'This is platform enum type.',
     values: {
@@ -11,7 +11,7 @@ const PlatformEnumType = new GraphQLEnumType({
     }
 });
 
-const DayEnumType = new GraphQLEnumType({
+export const DayEnumType = new GraphQLEnumType({
     name: 'DayEnum',
     description: 'This is day enum type.',
     values: {
@@ -25,7 +25,7 @@ const DayEnumType = new GraphQLEnumType({
     }
 });
 
-const MonthEnumType = new GraphQLEnumType({
+export const MonthEnumType = new GraphQLEnumType({
     name: 'MonthEnum',
     description: 'This is month enum type',
     values: {
@@ -43,5 +43,3 @@ const MonthEnumType = new GraphQLEnumType({
         DECEMBER: { value: 'December' }
     }
 });
-
-module.exports = { PlatformEnumType, DayEnumType, MonthEnumType };

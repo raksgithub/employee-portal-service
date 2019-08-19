@@ -1,8 +1,8 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType, GraphQLInt } = require('graphql');
-const Room = require('../../model/room');
-const Cubical = require('../../model/cubical');
+import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInt } from 'graphql';
+import Room from '../../model/room';
+import Cubical from '../../model/cubical';
 
-const RoomType = new GraphQLObjectType({
+export const RoomType = new GraphQLObjectType({
     name: 'Room',
     fields: () => ({
         id: { type: GraphQLID },
@@ -21,7 +21,7 @@ const RoomType = new GraphQLObjectType({
     })
 });
 
-const CubicalType = new GraphQLObjectType({
+export const CubicalType = new GraphQLObjectType({
     name: 'Cubical',
     fields: () => ({
         id: { type: GraphQLID },
@@ -33,5 +33,3 @@ const CubicalType = new GraphQLObjectType({
         }
     })
 });
-
-module.exports = { CubicalType, RoomType };

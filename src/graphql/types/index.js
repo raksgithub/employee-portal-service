@@ -1,11 +1,11 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType, GraphQLInt } = require('graphql');
-const Project = require('../../model/project');
-const Employee = require('../../model/employee');
-const { DateType } = require('./date');
-const { CubicalType } = require('./location');
-const Cubical = require('../../model/cubical');
-const Department = require('../../model/department');
-const Company = require('../../model/company');
+import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType, GraphQLInt } from 'graphql';
+import Project from '../../model/project';
+import Employee from '../../model/employee';
+import { DateType } from './date';
+import { CubicalType } from './location';
+import Cubical from '../../model/cubical';
+import Department from '../../model/department';
+import Company from '../../model/company';
 
 const ProjectType = new GraphQLObjectType({
     name: 'Project',
@@ -175,7 +175,7 @@ const CompanyType = new GraphQLObjectType({
     })
 });
 
-module.exports = {
+export {
     EmployeeType,
     ExperienceInputType,
     ProjectType,

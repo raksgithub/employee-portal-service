@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInputObjectType } = require('graphql');
+import { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInputObjectType } from 'graphql';
 
 const AddressInputType = new GraphQLInputObjectType({
     name: 'AddressInput',
@@ -35,4 +35,4 @@ const OfficeType = new GraphQLObjectType({
     })
 });
 
-module.exports = { OfficeType, AddressInputType };
+export { OfficeType, AddressInputType };

@@ -1,8 +1,8 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLBoolean, GraphQLList } = require('graphql');
-const { DateType } = require('./date');
-const Product = require('../../model/product');
-const Release = require('../../model/release');
-const { PlatformEnumType } = require('./enums');
+import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLBoolean, GraphQLList } from 'graphql';
+import { DateType } from './date';
+import Product from '../../model/product';
+import Release from '../../model/release';
+import { PlatformEnumType } from './enums';
 
 const ProductType = new GraphQLObjectType({
     name: 'Product',
@@ -67,4 +67,4 @@ const ReleaseType = new GraphQLObjectType({
     })
 });
 
-module.exports = { ReleaseType, ProductType };
+export { ReleaseType, ProductType };
